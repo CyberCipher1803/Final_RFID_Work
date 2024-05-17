@@ -20,6 +20,13 @@ function ServoTurnShort () {
     pins.servoWritePin(AnalogPin.P16, 0)
     basic.pause(500)
 }
+function WrongBuzzer () {
+    pins.setAudioPin(AnalogPin.P8)
+    pins.setAudioPinEnabled(true)
+    music.ringTone(554)
+    music.rest(music.beat(BeatFraction.Half))
+    music.ringTone(554)
+}
 serial.redirect(
 SerialPin.P0,
 SerialPin.P1,

@@ -13,6 +13,8 @@ function Buzzer () {
     music.ringTone(262)
     music.rest(music.beat(BeatFraction.Half))
     music.ringTone(262)
+    basic.pause(2000)
+    music.stopAllSounds()
 }
 function ServoTurnShort () {
     pins.servoWritePin(AnalogPin.P16, 180)
@@ -26,6 +28,8 @@ function WrongBuzzer () {
     music.ringTone(554)
     music.rest(music.beat(BeatFraction.Half))
     music.ringTone(554)
+    basic.pause(2000)
+    music.stopAllSounds()
 }
 serial.redirect(
 SerialPin.P0,
@@ -37,5 +41,13 @@ ServoTurnShort()
 basic.forever(function () {
     if (serial.readString() == fob) {
         ServoTurnLong()
+        Buzzer()
+        basic.pause(5000)
+        ServoTurnShort()
+    } else if (serial.readString() != fob) {
+        WrongBuzzer()
+    } else {
+        allOff()
+        WrongBuzzer()
     }
 })

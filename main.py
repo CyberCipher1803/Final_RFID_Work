@@ -7,6 +7,10 @@ def allOff():
     pins.set_audio_pin_enabled(False)
 def Buzzer():
     pins.set_audio_pin(AnalogPin.P8)
+    pins.set_audio_pin_enabled(True)
+    music.ring_tone(262)
+    music.rest(music.beat(BeatFraction.HALF))
+    music.ring_tone(262)
 def ServoTurnShort():
     pins.servo_write_pin(AnalogPin.P16, 180)
     basic.pause(500)

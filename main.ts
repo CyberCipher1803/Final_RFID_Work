@@ -9,6 +9,10 @@ function allOff () {
 }
 function Buzzer () {
     pins.setAudioPin(AnalogPin.P8)
+    pins.setAudioPinEnabled(true)
+    music.ringTone(262)
+    music.rest(music.beat(BeatFraction.Half))
+    music.ringTone(262)
 }
 function ServoTurnShort () {
     pins.servoWritePin(AnalogPin.P16, 180)

@@ -1,3 +1,8 @@
+def WelcomeSign():
+    if serial.read_string() == fob:
+        basic.show_string("Welcome")
+    else:
+        basic.show_icon(IconNames.SAD)
 def ServoTurnLong():
     pins.servo_write_pin(AnalogPin.P16, 180)
     basic.pause(2000)
@@ -26,6 +31,7 @@ def WrongBuzzer():
     music.ring_tone(554)
     basic.pause(2000)
     music.stop_all_sounds()
+fob = ""
 serial.redirect(SerialPin.P0, SerialPin.P1, BaudRate.BAUD_RATE9600)
 fob = "0796AEA56D57"
 ServoTurnShort()
@@ -34,10 +40,12 @@ def on_forever():
     if serial.read_string() == fob:
         ServoTurnLong()
         Buzzer()
+        WelcomeSign()
         basic.pause(5000)
         ServoTurnShort()
     elif serial.read_string() != fob:
         WrongBuzzer()
+        WelcomeSign()
     else:
         allOff()
         WrongBuzzer()

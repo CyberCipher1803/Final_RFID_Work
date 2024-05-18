@@ -6,6 +6,7 @@ function ServoTurnLong () {
 function allOff () {
     pins.servoWritePin(AnalogPin.P16, 0)
     pins.setAudioPinEnabled(false)
+    pins.digitalWritePin(DigitalPin.P8, 0)
 }
 function Buzzer () {
     pins.setAudioPin(AnalogPin.P8)
